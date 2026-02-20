@@ -1,0 +1,45 @@
+graph TD
+
+    Browser["🌐 Navegador Web<br/>Chrome | Edge | Opera | Brave"]
+
+    Browser -->|"HTTPS 443"| RenderNginx
+
+    RenderNginx["🖥️ Servidor Web (Render)<br/>Nginx + PHP-FPM"]
+
+    RenderNginx -->|"PHP-FPM"| Laravel
+
+    subgraph APP["Aplicación en Render<br/>Laravel 12.x"]
+        Laravel["⚡ Laravel Core<br/>PHP 8.2+ | Routing"]
+
+        Laravel --> Frontend
+
+        subgraph Frontend["Frontend Stack"]
+            LW["⚡ Livewire 3.x<br/>Componentes Reactivos"]
+            FL["🎛️ Filament 4.x<br/>Admin Panel"]
+            TW["🎨 Tailwind 4.x<br/>CSS"]
+        end
+
+        Frontend --> Models
+
+        Models["📦 Eloquent ORM<br/>Modelos & Relación BD"]
+    end
+
+    Models -->|"Puerto 5432 SQL<br/>SSL/TLS"| Postgres
+
+    Postgres[("🗄️ PostgreSQL (Render)<br/>dpg-d4ot65npm1nc73dutrb0-a.oregon-postgres.render.com:5432")]
+
+    Postgres --> Models
+    Models --> RenderNginx
+    RenderNginx --> Browser
+
+%% Estilos
+    style Browser fill:#3b82f6,stroke:#1e40af,stroke-width:3px,color:#fff
+    style RenderNginx fill:#10b981,stroke:#047857,stroke-width:3px,color:#fff
+    style Laravel fill:#ef4444,stroke:#b91c1c,stroke-width:3px,color:#fff
+    style LW fill:#8b5cf6,stroke:#6d28d9,stroke-width:2px,color:#fff
+    style FL fill:#8b5cf6,stroke:#6d28d9,stroke-width:2px,color:#fff
+    style TW fill:#8b5cf6,stroke:#6d28d9,stroke-width:2px,color:#fff
+    style Models fill:#f59e0b,stroke:#d97706,stroke-width:2px,color:#fff
+    style Postgres fill:#0ea5e9,stroke:#0369a1,stroke-width:4px,color:#fff
+    style APP fill:#fee2e2,stroke:#dc2626,stroke-width:2px
+    style Frontend fill:#ede9fe,stroke:#7c3aed,stroke-width:2px

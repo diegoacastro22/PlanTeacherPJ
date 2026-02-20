@@ -1,0 +1,43 @@
+graph TD
+    Browser["🌐 Navegador Web<br/>Chrome | Firefox | Safari"]
+
+    Browser -->|"Puerto 80/443"| WebServer
+
+    WebServer["🖥️ Servidor Web<br/>Apache/Nginx<br/>localhost"]
+
+    WebServer -->|"PHP-FPM"| Laravel
+
+    subgraph APP["Aplicación Laravel 12.x"]
+        Laravel["⚡ Laravel Core<br/>PHP 8.2+ | Routing"]
+
+        Laravel --> Frontend
+
+        subgraph Frontend["Frontend Stack"]
+            LW["⚡ Livewire 3.x<br/>Componentes Reactivos"]
+            FL["🎛️ Filament 4.x<br/>App Panel"]
+            TW["🎨 Tailwind 4.x<br/>Estilos CSS"]
+        end
+
+        Frontend --> Models
+
+        Models["📦 Eloquent ORM<br/>Modelos y Relaciones"]
+    end
+
+    Models -->|"Puerto 3306 SQL"| MySQL
+
+    MySQL[("🗄️ MySQL<br/>127.0.0.1:3306")]
+
+    MySQL --> Models
+    Models --> WebServer
+    WebServer --> Browser
+
+    style Browser fill:#3b82f6,stroke:#1e40af,stroke-width:3px,color:#fff
+    style WebServer fill:#10b981,stroke:#047857,stroke-width:3px,color:#fff
+    style Laravel fill:#ef4444,stroke:#b91c1c,stroke-width:3px,color:#fff
+    style LW fill:#8b5cf6,stroke:#6d28d9,stroke-width:2px,color:#fff
+    style FL fill:#8b5cf6,stroke:#6d28d9,stroke-width:2px,color:#fff
+    style TW fill:#8b5cf6,stroke:#6d28d9,stroke-width:2px,color:#fff
+    style Models fill:#f59e0b,stroke:#d97706,stroke-width:2px,color:#fff
+    style MySQL fill:#f97316,stroke:#ea580c,stroke-width:4px,color:#fff
+    style APP fill:#fee2e2,stroke:#dc2626,stroke-width:2px
+    style Frontend fill:#ede9fe,stroke:#7c3aed,stroke-width:2px

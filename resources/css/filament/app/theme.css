@@ -1,0 +1,14 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+@import '../../../../resources/css/app.css';
+@import 'tailwindcss';
+
+@source '../../../../vendor/andreia/filament-ui-switcher';
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/filament/**/*';
+@source '../../../../vendor/wire-elements/**/*.blade.php';
+
+
+.fi-simple-header {
+    align-items: center;
+}
+
